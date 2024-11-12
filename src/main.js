@@ -5,7 +5,6 @@ import { createExitSignal, staticServer } from "./shared/server.ts";
 import { gpt } from "./shared/openai.ts";
 
 import { queryPc } from "./pc.js";
-import console from "console";
 
 const app = new Application();
 const router = new Router();
