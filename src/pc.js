@@ -2,7 +2,7 @@ import { getEnvVariable } from "./shared/util.ts";
 import OpenAI from "https://deno.land/x/openai@v4.68.2/mod.ts";
 import { Pinecone } from "npm:@pinecone-database/pinecone";
 
-const pc = new PineconeClient();
+const pc = new Pinecone.PineconeClient();
 pc.init({
   apiKey: getEnvVariable("PC_API_KEY"), // Replace with your actual API key
   environment: "us-east1-aws", // Ensure you use the correct environment (you can find this in your Pinecone Console)
