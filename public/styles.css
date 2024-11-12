@@ -103,7 +103,7 @@ input[type="file"] {
   margin-top: 20px;
 }
 
-.gallery-cont {
+.galleryCont {
   display: flex;
   position: relative;
   flex-flow: column;
@@ -111,12 +111,28 @@ input[type="file"] {
   align-items: flex-start;
   align-content: flex-start;
   justify-items: right;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 
 .caption {
-  width: 100%;
+  position: relative;
+  width: 80%;
   margin-top: 10px;
+}
+
+.score {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-family: "neue-haas-grotesk-text", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+  color: white;
+  font-size: 12px;
+  background: rgb(49, 49, 49);
+  padding: 5px;
+  border-radius: 12px;
+  text-align: right;
 }
 
 .caption p,

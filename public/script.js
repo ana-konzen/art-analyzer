@@ -85,21 +85,21 @@ async function createGallery(artData) {
     const div = document.createElement("div");
     const caption = document.createElement("div");
     const artLink = `https://www.artic.edu/artworks/${info.artic_id}`;
-    div.classList.add("gallery-cont");
+    div.classList.add("galleryCont");
     caption.classList.add("caption");
     const image = document.createElement("img");
     image.src = setImageURL(info.image);
     div.appendChild(image);
-    if (info.title === null) {
+    if (info.title === "") {
       info.title = "Untitled";
     }
-    if (info.artist === null) {
+    if (info.artist === "") {
       info.artist = "Unknown";
     }
-    if (info.date === null) {
+    if (info.date === "") {
       info.date = "n.d.";
     }
-    caption.innerHTML += `<p class="artist">${info.artist}</p><p><span class="title">${info.title}</span><br>${info.date}</p><br><p>${info.collection}</p><p><a href="${artLink}" target="_blank">→ original</a></p>`;
+    caption.innerHTML += `<div class="score">${info.score}</div><p class="artist">${info.artist}</p><p><span class="title">${info.title}</span><br>${info.date}</p><br><p>${info.collection}</p><p><a href="${artLink}" target="_blank">→ original</a></p>`;
     div.appendChild(caption);
     columns[i % numColumns].appendChild(div);
   }
