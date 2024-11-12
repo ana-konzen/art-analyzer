@@ -27,6 +27,6 @@ export async function queryPc(queryString, namespace = "", topK = 10) {
       includeMetadata: true,
     }),
   });
-  console.log(response.json());
+  console.log(await response.json());
   return await response.json();
 }
