@@ -5,12 +5,12 @@ import { createExitSignal, staticServer } from "./shared/server.ts";
 import { gpt } from "./shared/openai.ts";
 
 import { queryPc } from "./pc.js";
+import console from "console";
 
 const app = new Application();
 const router = new Router();
 
 router.post("/api/image", async (ctx) => {
-  console.log("hi from server");
   console.log("ctx.request.url.pathname:", ctx.request.url.pathname);
 
   console.log("ctx.request.method:", ctx.request.method);
@@ -23,6 +23,7 @@ router.post("/api/image", async (ctx) => {
   const queryResult = await queryPc(query, "paintings_artic", 10);
   // await Deno.writeTextFile("data/query-result.json", JSON.stringify(queryResult, null, 2));
   const artData = [{ query: query }];
+  console.log(queryResult);
   for (const match of queryResult.matches) {
     const matchData = match.metadata;
     artData.push({

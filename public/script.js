@@ -35,7 +35,6 @@ sendElement.addEventListener("click", async () => {
 
 async function sendImage() {
   const reader = new FileReader();
-  console.log("hi");
   reader.readAsDataURL(imageInput.files[0]);
   reader.onload = async function () {
     try {
