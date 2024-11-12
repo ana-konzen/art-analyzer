@@ -38,6 +38,7 @@ async function sendImage() {
   reader.readAsDataURL(imageInput.files[0]);
   reader.onload = async function () {
     try {
+      console.log(reader.result.slice(0, 50));
       const response = await fetch("/api/image", {
         method: "POST",
         body: JSON.stringify({ image: reader.result }),
