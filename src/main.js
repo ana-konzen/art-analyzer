@@ -10,6 +10,7 @@ const app = new Application();
 const router = new Router();
 
 router.post("/api/image", async (ctx) => {
+  console.log("hi from server");
   console.log("ctx.request.url.pathname:", ctx.request.url.pathname);
 
   console.log("ctx.request.method:", ctx.request.method);
