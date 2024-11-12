@@ -20,6 +20,7 @@ router.post("/api/image", async (ctx) => {
   console.log(imageURL.slice(0, 50));
   const query = await getQuery(imageURL);
   const queryResult = await queryPc(query, "paintings_artic", 10);
+  console.log(queryResult);
   // await Deno.writeTextFile("data/query-result.json", JSON.stringify(queryResult, null, 2));
   const artData = [{ query: query }];
   for (const match of queryResult.matches) {
