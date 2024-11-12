@@ -35,10 +35,11 @@ sendElement.addEventListener("click", async () => {
 
 async function sendImage() {
   const reader = new FileReader();
+  console.log("hi");
   reader.readAsDataURL(imageInput.files[0]);
   reader.onload = async function () {
     try {
-      console.log("hi");
+      console.log("reader loaded");
       console.log(imageURL.slice(0, 50));
       const response = await fetch("/api/image", {
         method: "POST",
