@@ -85,7 +85,7 @@ async function createGallery(artData) {
     const div = document.createElement("div");
     const caption = document.createElement("div");
     const artLink = `https://www.artic.edu/artworks/${info.artic_id}`;
-    div.classList.add("galleryCont");
+    div.classList.add("gallery-cont");
     caption.classList.add("caption");
     const image = document.createElement("img");
     image.src = setImageURL(info.image);
