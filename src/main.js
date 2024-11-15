@@ -21,21 +21,7 @@ router.post("/api/image", async (ctx) => {
   const query = await getQuery(imageURL);
   const queryResult = await queryPc(query, "paintings_artic", 10);
   // await Deno.writeTextFile("data/query-result.json", JSON.stringify(queryResult, null, 2));
-  const artData = [{ query: query }];
-  console.log(queryResult);
-  for (const match of queryResult.matches) {
-    const matchData = match.metadata;
-    artData.push({
-      artist: matchData.artist,
-      title: matchData.title,
-      date: matchData.date,
-      medium: matchData.medium,
-      collection: matchData.collection,
-      image: matchData.image,
-      artic_id: matchData.artic_id,
-      score: Math.round(match.score * 100 * 10) / 10 + "%",
-    });
-  }
+  const artData = processData(queryResult, query);
   ctx.response.body = artData;
 });
 
@@ -80,4 +66,22 @@ async function getQuery(imageURL) {
   });
   console.log(response.content);
   return response.content;
+}
+
+function processData(queryResult, query) {
+  const artData = [{ query: query }];
+  for (const match of queryResult.matches) {
+    const matchData = match.metadata;
+    artData.push({
+      artist: matchData.artist,
+      title: matchData.title,
+      date: matchData.date,
+      medium: matchData.medium,
+      collection: matchData.collection,
+      image: matchData.image,
+      artic_id: matchData.artic_id,
+      score: Math.round(match.score * 100 * 10) / 10 + "%",
+    });
+  }
+  return artData;
 }
