@@ -22,7 +22,7 @@ imageInput.addEventListener("change", () => {
     fileLabel.innerHTML = "error";
   } else {
     console.log("Image uploaded");
-    fileLabel.style.color = "green";
+    fileLabel.classList.add("uploaded");
     fileLabel.innerHTML = "uploaded";
     sendButton.style.opacity = 1;
     sendButton.disabled = false;
@@ -86,7 +86,8 @@ async function sendImage() {
       artImg.style.opacity = 1;
       imgContainer.style.opacity = 1;
 
-      fileLabel.style.color = "black";
+      fileLabel.classList.remove("uploaded");
+
       fileLabel.innerHTML = "choose file";
       sendButton.style.opacity = 0.3;
       sendButton.disabled = true;

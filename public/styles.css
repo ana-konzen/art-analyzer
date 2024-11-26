@@ -109,7 +109,6 @@ input[type="file"] {
   border: none;
   /* color: #ede3d3; */
   padding: 2px 6px;
-  color: rgb(0, 0, 0);
   font-size: 14px;
   font-family: halcom, sans-serif;
   font-weight: 400;
@@ -118,6 +117,7 @@ input[type="file"] {
 
 .active {
   cursor: pointer;
+  color: rgb(0, 0, 0);
 }
 .active:hover {
   /* text-decoration: underline from-font; */
@@ -126,9 +126,8 @@ input[type="file"] {
   color: white;
 }
 
-#fileLabel:hover {
-  background: rgb(49, 49, 49);
-  color: white;
+.uploaded {
+  color: green;
 }
 
 #leftCont {
