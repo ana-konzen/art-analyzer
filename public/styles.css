@@ -266,6 +266,7 @@ a {
 
 .caption .artist {
   font-weight: 600;
+  width: 75%;
 }
 
 .gallery-cont img {
