@@ -40,11 +40,12 @@ showInfo.addEventListener("click", () => {
 });
 
 sendButton.addEventListener("click", async () => {
+  document.getElementById("line").style.height = "0";
   galleryCont.style.opacity = 0;
   imgContainer.style.opacity = 0;
   imageInfo.innerHTML = "";
   artImg.src = "";
-  await new Promise((resolve) => setTimeout(resolve, 500));
+  await new Promise((resolve) => setTimeout(resolve, 800));
 
   loadingBuffer.style.display = "block";
 

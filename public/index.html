@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Artifact</title>
+    <title>artifact</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -16,8 +16,6 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="loading"></div>
-
     <div id="leftCont">
       <h2 id="header">
         <span class="a">a</span><span class="r">r</span><span class="t1">t</span><span class="i">i</span
@@ -29,12 +27,13 @@
         <input id="imageInput" type="file" accept="image/png, image/jpeg" />
         <span class="separator">&nbsp / &nbsp</span><button id="send" class="button">send</button>
       </div>
+      <div id="loading"></div>
       <div id="imgContainer">
         <img id="artImg" />
 
         <div id="infoCont">
           <button id="showInfo" class="button active">query <span class="arrow">↗</span></button>
-          <div id="imageInfo" class="hidden">hiiii</div>
+          <div id="imageInfo" class="hidden"></div>
         </div>
       </div>
     </div>

@@ -10,11 +10,11 @@
 }
 
 #loading {
-  position: fixed;
+  position: absolute;
   width: 30px;
   height: 30px;
-  left: 50vw;
-  top: 400px;
+  left: 50%;
+  top: 200px;
   transform: translate(-50%, -50%);
   /* transition: 0.5s; */
   background: black;
