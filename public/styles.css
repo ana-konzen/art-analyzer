@@ -1,3 +1,7 @@
+:root {
+  --leftContWidth: 350px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -28,7 +32,7 @@
   height: 0;
   background: black;
   top: 50vh;
-  left: 32vw;
+  left: 35vw;
   transform: translate(-50%, -50%);
   transition: 800ms;
 }
@@ -146,11 +150,10 @@ input[type="file"] {
 }
 
 #leftCont {
-  /* background: #ede3d3; */
   position: fixed;
   top: 150px;
   left: 50vw;
-  width: 30vw;
+  width: var(--leftContWidth);
   padding: 30px;
   height: 100vh;
   overflow-y: scroll;
@@ -172,7 +175,7 @@ input[type="file"] {
 #gallery {
   display: flex;
   width: 60vw;
-  right: 30px;
+  right: 0px;
   position: absolute;
   justify-content: left;
   justify-items: left;
@@ -182,8 +185,10 @@ input[type="file"] {
 }
 
 .column {
-  flex: 1;
+  /* flex: 1; */
   height: 100%;
+  position: relative;
+  width: 250px;
   /* margin-left: 30px; */
   margin-top: 20px;
   /* border-left: solid black 0.5px; */

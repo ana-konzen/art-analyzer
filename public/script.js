@@ -92,9 +92,9 @@ async function sendImage() {
 
       loadingBuffer.style.display = "none";
 
-      leftCont.style.left = "0";
+      leftCont.style.left = "calc(30vw)";
       leftCont.style.top = "50px";
-      leftCont.style.transform = "translateX(0)";
+      leftCont.style.transform = "translateX(-100%)";
       document.getElementById("line").style.height = "90vh";
       document.getElementById("header").style.marginBottom = "10px";
 
