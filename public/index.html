@@ -16,33 +16,46 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <div id="leftCont">
-      <h2 id="header">
+    <div id="phoneCont">
+      <h2 class="header">
         <span class="a">a</span><span class="r">r</span><span class="t1">t</span><span class="i">i</span
         ><span class="f">f</span><span class="a2">a</span><span class="c">c</span><span class="t2">t</span>
       </h2>
-      <div id="formCont">
-        <!-- <h3 id="formTitle">upload your image</h3> -->
-        <label for="imageInput" class="button active" id="fileLabel">choose file</label>
-        <input id="imageInput" type="file" accept="image/png, image/jpeg, image/webp" />
-        <span class="separator">&nbsp / &nbsp</span><button id="send" class="button">send</button>
-      </div>
-      <div id="errorMessage">
-        Sorry, this image cannot be analyzed :( <br />
-        Please choose another image.
-      </div>
-      <div id="loading"></div>
-      <div id="imgContainer">
-        <img id="artImg" />
-        <div id="infoCont">
-          <button id="showInfo" class="button active">query <span class="arrow">↗</span></button>
-          <div id="imageInfo" class="hidden"></div>
-        </div>
+      <div id="phoneMessage">
+        This website is best viewed on a desktop or laptop computer.
+        <img src="tears.png" />
+        Please visit us on a larger screen.
       </div>
     </div>
-    <div id="line"></div>
+    <div id="browserCont">
+      <div id="leftCont">
+        <h2 id="header" class="header">
+          <span class="a">a</span><span class="r">r</span><span class="t1">t</span><span class="i">i</span
+          ><span class="f">f</span><span class="a2">a</span><span class="c">c</span><span class="t2">t</span>
+        </h2>
+        <div id="formCont">
+          <!-- <h3 id="formTitle">upload your image</h3> -->
+          <label for="imageInput" class="button active" id="fileLabel">choose file</label>
+          <input id="imageInput" type="file" accept="image/png, image/jpeg, image/webp" />
+          <span class="separator">&nbsp / &nbsp</span><button id="send" class="button">send</button>
+        </div>
+        <div id="errorMessage">
+          Sorry, this image cannot be analyzed :( <br />
+          Please choose another image.
+        </div>
+        <div id="loading"></div>
+        <div id="imgContainer">
+          <img id="artImg" />
+          <div id="infoCont">
+            <button id="showInfo" class="button active">query <span class="arrow">↗</span></button>
+            <div id="imageInfo" class="hidden"></div>
+          </div>
+        </div>
+      </div>
+      <div id="line"></div>
 
-    <div id="gallery"></div>
+      <div id="gallery"></div>
+    </div>
 
     <script src="script.js"></script>
   </body>

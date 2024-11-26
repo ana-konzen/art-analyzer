@@ -1,4 +1,3 @@
-const numColumns = 3;
 const sendButton = document.getElementById("send");
 const imageInput = document.getElementById("imageInput");
 const galleryCont = document.getElementById("gallery");
@@ -16,6 +15,8 @@ const imgContainer = document.getElementById("imgContainer");
 const errorMessage = document.getElementById("errorMessage");
 
 sendButton.disabled = true;
+
+const numColumns = 3;
 
 imageInput.addEventListener("change", () => {
   if (imageInput.files.length === 0) {
@@ -64,15 +65,12 @@ async function sendImage() {
   reader.readAsDataURL(imageInput.files[0]);
   reader.onload = async function () {
     try {
-      console.log("reader loaded");
-      console.log(reader.result.slice(0, 50));
       const response = await fetch("/api/image", {
         method: "POST",
         body: JSON.stringify({ image: reader.result }),
       });
 
       const artData = await response.json();
-      console.log(artData);
 
       if (artData.hasOwnProperty("error")) {
         errorMessage.style.display = "block";
