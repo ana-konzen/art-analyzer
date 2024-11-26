@@ -1,29 +1,51 @@
-const numColumns = 2;
-const sendElement = document.getElementById("send");
+const numColumns = 3;
+const sendButton = document.getElementById("send");
 const imageInput = document.getElementById("imageInput");
 const galleryCont = document.getElementById("gallery");
 const loadingBuffer = document.getElementById("loading");
-const infoCont = document.getElementById("imageInfo");
+const imageInfo = document.getElementById("imageInfo");
 
 const artImg = document.getElementById("artImg");
 const fileLabel = document.getElementById("fileLabel");
 const leftCont = document.getElementById("leftCont");
 
+const showInfo = document.getElementById("showInfo");
+
+const imgContainer = document.getElementById("imgContainer");
+
+sendButton.disabled = true;
+
 imageInput.addEventListener("change", () => {
   if (imageInput.files.length === 0) {
     console.log("No image uploaded");
-    fileLabel.style.background = "red";
+    fileLabel.style.color = "red";
     fileLabel.innerHTML = "error";
   } else {
     console.log("Image uploaded");
-    fileLabel.style.background = "green";
+    fileLabel.style.color = "green";
     fileLabel.innerHTML = "uploaded";
+    sendButton.style.opacity = 1;
+    sendButton.disabled = false;
+    sendButton.classList.add("active");
   }
 });
 
-sendElement.addEventListener("click", async () => {
-  infoCont.innerHTML = "";
+showInfo.addEventListener("click", () => {
+  imageInfo.classList.toggle("hidden");
+  if (imageInfo.classList.contains("hidden")) {
+    showInfo.innerHTML = "query <span class='arrow'>↗</span>";
+  } else {
+    showInfo.innerHTML = "query <span class='arrow'>↘</span>";
+  }
+});
+
+sendButton.addEventListener("click", async () => {
+  galleryCont.style.opacity = 0;
+  imgContainer.style.opacity = 0;
+  imageInfo.innerHTML = "";
   artImg.src = "";
+  await new Promise((resolve) => setTimeout(resolve, 500));
+
   loadingBuffer.style.display = "block";
 
   if (imageInput.files.length === 0) {
@@ -47,10 +69,26 @@ async function sendImage() {
       const artData = await response.json();
       await createGallery(artData);
       artImg.src = reader.result;
-      infoCont.innerHTML = artData[0].query;
+      imageInfo.innerHTML = artData[0].query;
 
-      fileLabel.style.background = "black";
+      loadingBuffer.style.display = "none";
+
+      leftCont.style.left = "0";
+      leftCont.style.top = "50px";
+      leftCont.style.transform = "translateX(0)";
+      document.getElementById("line").style.height = "90vh";
+
+      await new Promise((resolve) => setTimeout(resolve, 800));
+
+      galleryCont.style.opacity = 1;
+      artImg.style.opacity = 1;
+      imgContainer.style.opacity = 1;
+
+      fileLabel.style.color = "black";
       fileLabel.innerHTML = "choose file";
+      sendButton.style.opacity = 0.3;
+      sendButton.disabled = true;
+      sendButton.classList.remove("active");
     } catch (error) {
       console.error(error);
     }
@@ -99,8 +137,8 @@ async function createGallery(artData) {
     if (info.date === "") {
       info.date = "n.d.";
     }
-    caption.innerHTML += `<div class="score">${info.score}</div><p class="artist">${info.artist}</p><p><span class="title">${info.title}</span><br>${info.date}</p><br><p>${info.collection}</p><p><a href="${artLink}" target="_blank">→ original</a></p>`;
+    caption.innerHTML += `<div class="score">${info.score}</div><p class="artist">${info.artist}</p><p><span class="title">${info.title}</span><br>${info.date}</p><br><p>${info.collection}</p><p><a href="${artLink}" target="_blank">original <span class="arrow">↗</span></a></p>`;
     div.appendChild(caption);
-    columns[i % numColumns].appendChild(div);
+    columns[(i - 1) % numColumns].appendChild(div);
   }
 }

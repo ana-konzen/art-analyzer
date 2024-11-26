@@ -22,6 +22,7 @@ router.post("/api/image", async (ctx) => {
   const queryResult = await queryPc(query, "paintings_artic", 10);
   // await Deno.writeTextFile("data/query-result.json", JSON.stringify(queryResult, null, 2));
   const artData = processData(queryResult, query);
+  console.log(artData);
   ctx.response.body = artData;
 });
 

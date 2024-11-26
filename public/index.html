@@ -3,30 +3,43 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Art Analyzer</title>
+    <title>Artifact</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://use.typekit.net/eiw8ajb.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="https://use.typekit.net/dwl5vve.css" />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div id="loading"></div>
 
     <div id="leftCont">
-      <h2 id="header">art analyzer</h2>
+      <h2 id="header">
+        <span class="a">a</span><span class="r">r</span><span class="t1">t</span><span class="i">i</span
+        ><span class="f">f</span><span class="a2">a</span><span class="c">c</span><span class="t2">t</span>
+      </h2>
       <div id="formCont">
         <!-- <h3 id="formTitle">upload your image</h3> -->
-        <label for="imageInput" class="button" id="fileLabel">choose file</label>
+        <label for="imageInput" class="button active" id="fileLabel">choose file</label>
         <input id="imageInput" type="file" accept="image/png, image/jpeg" />
-        <button id="send" class="button">send</button>
+        <span class="separator">&nbsp / &nbsp</span><button id="send" class="button">send</button>
       </div>
       <div id="imgContainer">
         <img id="artImg" />
-        <div id="imageInfo" class="caption"></div>
+
+        <div id="infoCont">
+          <button id="showInfo" class="button active">query <span class="arrow">↗</span></button>
+          <div id="imageInfo" class="hidden">hiiii</div>
+        </div>
       </div>
     </div>
+    <div id="line"></div>
+
     <div id="gallery"></div>
 
     <script src="script.js"></script>
