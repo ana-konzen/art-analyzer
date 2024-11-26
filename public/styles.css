@@ -130,6 +130,21 @@ input[type="file"] {
   color: green;
 }
 
+.error {
+  color: red;
+}
+
+#errorMessage {
+  color: red;
+  font-family: halcom, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 20px;
+  font-style: normal;
+  display: none;
+}
+
 #leftCont {
   /* background: #ede3d3; */
   position: fixed;

@@ -19,11 +19,15 @@ router.post("/api/image", async (ctx) => {
   const imageURL = data.image;
   console.log(imageURL.slice(0, 50));
   const query = await getQuery(imageURL);
-  const queryResult = await queryPc(query, "paintings_artic", 10);
-  // await Deno.writeTextFile("data/query-result.json", JSON.stringify(queryResult, null, 2));
-  const artData = processData(queryResult, query);
-  console.log(artData);
-  ctx.response.body = artData;
+  if (query.startsWith("Error")) {
+    ctx.response.body = { error: query };
+  } else {
+    const queryResult = await queryPc(query, "paintings_artic", 10);
+    // await Deno.writeTextFile("data/query-result.json", JSON.stringify(queryResult, null, 2));
+    const artData = processData(queryResult, query);
+    console.log(artData);
+    ctx.response.body = artData;
+  }
 });
 
 app.use(router.routes());
@@ -51,7 +55,8 @@ async function getQuery(imageURL) {
              Example 4: *Artist*: Claude Monet; *Title*: Branch of the Seine near Giverny (Mist); *Date*: 1897; *Subjects*: landscapes, white (color), river, reflections, purple (color), blue (color), weather/seasons, water; *Classifications*: painting, oil on canvas, oil paintings (visual works), paint, french, european painting; *Terms*: painting, oil painting, Impressionism, landscapes, oil paint (paint), white (color), river, reflections, purple (color), blue (color), nineteenth century, 19th century, painting techniques, painting (image making), painting, painting, paint, canvas, oil on canvas, oil paintings (visual works), paint, french, european painting, weather/seasons, water; *Medium*: Oil on canvas; *Movement*: Impressionism; *Genre*: landscape painting
              Example 5: *Artist*: Henry Ward Ranger; *Title*: Brooklyn Bridge; *Date*: 1899; *Subjects*: cityscapes, Century of Progress, world's fairs, Chicago World's Fairs, architecture, landscapes; *Classifications*: painting, american arts; *Terms*: painting, oil paint (paint), Impressionism, cityscapes, organic material, american arts, Century of Progress, world's fairs, Chicago World's Fairs, architecture, landscapes; *Medium*: Oil on canvas; *Artist Genes*: Modern, American Tonalism, Figurative Painting, Landscapes, Large Brushstrokes/Loose Brushwork, Late 19th Century Art, Light as Subject, Nature, Painting, American Art; *Genre*: landscape painting
               //
-             Only respond with the query. Even if you know the artist and/or title, omit them but take them into consideration when forming the descriptions for the query.`,
+             Only respond with the query. Even if you know the artist and/or title, omit them but take them into consideration when forming the descriptions for the query.
+             If you are not able to analyze the image, answer with "Error. I am not able to analyze the image."`,
           },
           {
             type: "image_url",

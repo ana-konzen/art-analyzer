@@ -13,6 +13,8 @@ const showInfo = document.getElementById("showInfo");
 
 const imgContainer = document.getElementById("imgContainer");
 
+const errorMessage = document.getElementById("errorMessage");
+
 sendButton.disabled = true;
 
 imageInput.addEventListener("change", () => {
@@ -27,6 +29,7 @@ imageInput.addEventListener("change", () => {
     sendButton.style.opacity = 1;
     sendButton.disabled = false;
     sendButton.classList.add("active");
+    errorMessage.style.display = "none";
   }
 });
 
@@ -67,7 +70,22 @@ async function sendImage() {
         method: "POST",
         body: JSON.stringify({ image: reader.result }),
       });
+
       const artData = await response.json();
+      console.log(artData);
+
+      if (artData.hasOwnProperty("error")) {
+        errorMessage.style.display = "block";
+        loadingBuffer.style.display = "none";
+        fileLabel.classList.remove("uploaded");
+
+        fileLabel.innerHTML = "choose file";
+        sendButton.style.opacity = 0.3;
+        sendButton.disabled = true;
+        sendButton.classList.remove("active");
+        return;
+      }
+
       await createGallery(artData);
       artImg.src = reader.result;
       imageInfo.innerHTML = artData[0].query;
@@ -94,6 +112,7 @@ async function sendImage() {
       sendButton.classList.remove("active");
     } catch (error) {
       console.error(error);
+      errorMessage.style.display = "block";
     }
   };
 }

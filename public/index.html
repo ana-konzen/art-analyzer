@@ -24,12 +24,17 @@
       <div id="formCont">
         <!-- <h3 id="formTitle">upload your image</h3> -->
         <label for="imageInput" class="button active" id="fileLabel">choose file</label>
-        <input id="imageInput" type="file" accept="image/png, image/jpeg" />
+        <input id="imageInput" type="file" accept="image/png, image/jpeg, image/webp" />
         <span class="separator">&nbsp / &nbsp</span><button id="send" class="button">send</button>
+      </div>
+      <div id="errorMessage">
+        Sorry, this image cannot be analyzed :( <br />
+        Please choose another image.
       </div>
       <div id="loading"></div>
       <div id="imgContainer">
         <img id="artImg" />
+
         <div id="infoCont">
           <button id="showInfo" class="button active">query <span class="arrow">↗</span></button>
           <div id="imageInfo" class="hidden"></div>
