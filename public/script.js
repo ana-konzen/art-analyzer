@@ -78,6 +78,7 @@ async function sendImage() {
       leftCont.style.top = "50px";
       leftCont.style.transform = "translateX(0)";
       document.getElementById("line").style.height = "90vh";
+      document.getElementById("header").style.marginBottom = "10px";
 
       await new Promise((resolve) => setTimeout(resolve, 800));
 
