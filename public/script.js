@@ -21,8 +21,6 @@ const numColumns = 3;
 imageInput.addEventListener("change", () => {
   if (imageInput.files.length === 0) {
     console.log("No image uploaded");
-    fileLabel.style.color = "red";
-    fileLabel.innerHTML = "error";
   } else {
     console.log("Image uploaded");
     fileLabel.classList.add("uploaded");
