@@ -120,7 +120,7 @@ input[type="file"] {
   font-size: 14px;
   font-family: halcom, sans-serif;
   font-weight: 400;
-  /* transition: 100ms; */
+  transition: 100ms;
 }
 
 .active {
@@ -167,6 +167,12 @@ input[type="file"] {
   flex-flow: column;
   align-items: center;
   z-index: 10;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+#leftCont::-webkit-scrollbar {
+  display: none;
 }
 
 #imgContainer {
@@ -227,7 +233,8 @@ input[type="file"] {
 }
 
 #send {
-  opacity: 0.3;
+  opacity: 0;
+  display: none;
 }
 
 .score {

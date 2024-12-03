@@ -18,17 +18,17 @@ sendButton.disabled = true;
 
 const numColumns = 3;
 
-imageInput.addEventListener("change", () => {
+imageInput.addEventListener("change", async () => {
   if (imageInput.files.length === 0) {
     console.log("No image uploaded");
   } else {
     console.log("Image uploaded");
-    fileLabel.classList.add("uploaded");
-    fileLabel.innerHTML = "uploaded";
-    sendButton.style.opacity = 1;
-    sendButton.disabled = false;
-    sendButton.classList.add("active");
-    errorMessage.style.display = "none";
+    await sendImage();
+    // sendButton.style.opacity = 1;
+    // sendButton.disabled = false;
+    // sendButton.style.display = "block";
+    // sendButton.classList.add("active");
+    // errorMessage.style.display = "none";
   }
 });
 
@@ -42,15 +42,6 @@ showInfo.addEventListener("click", () => {
 });
 
 sendButton.addEventListener("click", async () => {
-  document.getElementById("line").style.height = "0";
-  galleryCont.style.opacity = 0;
-  imgContainer.style.opacity = 0;
-  imageInfo.innerHTML = "";
-  artImg.src = "";
-  await new Promise((resolve) => setTimeout(resolve, 800));
-
-  loadingBuffer.style.display = "block";
-
   if (imageInput.files.length === 0) {
     console.log("No image uploaded");
   } else {
@@ -59,6 +50,9 @@ sendButton.addEventListener("click", async () => {
 });
 
 async function sendImage() {
+  await hideStuff();
+  loadingBuffer.style.display = "block";
+
   const reader = new FileReader();
   reader.readAsDataURL(imageInput.files[0]);
   reader.onload = async function () {
@@ -73,12 +67,8 @@ async function sendImage() {
       if (artData.hasOwnProperty("error")) {
         errorMessage.style.display = "block";
         loadingBuffer.style.display = "none";
-        fileLabel.classList.remove("uploaded");
-
-        fileLabel.innerHTML = "choose file";
-        sendButton.style.opacity = 0.3;
-        sendButton.disabled = true;
-        sendButton.classList.remove("active");
+        loadingBuffer.style.opacity = 1;
+        fileLabel.style.display = "block";
         return;
       }
 
@@ -99,13 +89,8 @@ async function sendImage() {
       galleryCont.style.opacity = 1;
       artImg.style.opacity = 1;
       imgContainer.style.opacity = 1;
-
-      fileLabel.classList.remove("uploaded");
-
-      fileLabel.innerHTML = "choose file";
-      sendButton.style.opacity = 0.3;
-      sendButton.disabled = true;
-      sendButton.classList.remove("active");
+      fileLabel.style.display = "block";
+      fileLabel.style.opacity = 1;
     } catch (error) {
       console.error(error);
       errorMessage.style.display = "block";
@@ -131,7 +116,7 @@ function createGrid() {
 
 async function createGallery(artData) {
   galleryCont.innerHTML = "";
-
+  showInfo.style.opacity = 1;
   const infoArr = artData;
   loadingBuffer.style.display = "none";
   const columns = createGrid();
@@ -159,4 +144,16 @@ async function createGallery(artData) {
     div.appendChild(caption);
     columns[(i - 1) % numColumns].appendChild(div);
   }
+}
+
+async function hideStuff() {
+  document.getElementById("line").style.height = "0";
+  galleryCont.style.opacity = 0;
+  imgContainer.style.opacity = 0;
+  showInfo.style.opacity = 0;
+  imageInfo.innerHTML = "";
+  artImg.src = "";
+  fileLabel.style.opacity = 0;
+  await new Promise((resolve) => setTimeout(resolve, 800));
+  fileLabel.style.display = "none";
 }
