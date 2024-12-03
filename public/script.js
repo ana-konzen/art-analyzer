@@ -51,6 +51,7 @@ sendButton.addEventListener("click", async () => {
 
 async function sendImage() {
   await hideStuff();
+  await new Promise((resolve) => setTimeout(resolve, 800));
   loadingBuffer.style.display = "block";
 
   const reader = new FileReader();
@@ -154,6 +155,5 @@ async function hideStuff() {
   imageInfo.innerHTML = "";
   artImg.src = "";
   fileLabel.style.opacity = 0;
-  await new Promise((resolve) => setTimeout(resolve, 800));
   fileLabel.style.display = "none";
 }
